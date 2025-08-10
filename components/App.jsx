@@ -3,6 +3,16 @@ import { Sidebar } from "./Sidebar.jsx";
 import { EnergyConsumption } from "./EnergyConsumption.jsx";
 import { getReadings } from "../utils/reading";
 
+/**
+ * Main application component for displaying energy consumption data.
+ *
+ * Fetches readings asynchronously on mount and renders the sidebar and
+ * energy consumption components once data is available.
+ *
+ * @component
+ *
+ * @returns {JSX.Element|null} The rendered application layout, or null while loading.
+ */
 export const App = () => {
   const [readings, setReadings] = useState();
 
