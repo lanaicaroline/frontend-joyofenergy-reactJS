@@ -2,6 +2,14 @@ import React, { useEffect } from "react";
 import { renderChart } from "../utils/chart.js";
 import { groupByDay, sortByTime } from "../utils/reading";
 
+/**
+ * Displays an energy consumption chart for the last 30 days based on provided readings.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Array<Object>} props.readings - Array of energy reading objects to be visualized.
+ * @returns {JSX.Element} The rendered energy consumption chart component.
+ */
 export const EnergyConsumption = ({ readings }) => {
   const containerId = "usageChart";
   useEffect(() => {

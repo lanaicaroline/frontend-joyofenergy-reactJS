@@ -13,6 +13,16 @@ const SummarySection = ({ summary, subtitle }) => (
     <p className="darkgray mb2">{subtitle}</p>
   </>
 );
+/**
+ * Sidebar component displays a summary of power usage and production,
+ * as well as a list of devices with their respective power consumption.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Sidebar />
+ * )
+ */
 export const Sidebar = () => (
   <>
     <SummarySection summary="⚡️ 1.4kW" subtitle="Power draw" />

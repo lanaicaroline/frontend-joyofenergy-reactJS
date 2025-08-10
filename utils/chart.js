@@ -1,7 +1,13 @@
-import * as chartJs from "chart.js";
+import Chart from 'chart.js/auto';
 
 let chart;
 
+/**
+ * Formats a timestamp into a date label string in the format "DD/MM".
+ *
+ * @param {number|string|Date} timestamp - The timestamp to format. Can be a number (milliseconds), a date string, or a Date object.
+ * @returns {string} The formatted date label as "DD/MM".
+ */
 export const formatDateLabel = (timestamp) => {
   const date = new Date(timestamp);
   const month = date.getMonth();
@@ -14,12 +20,20 @@ export const formatDateLabel = (timestamp) => {
   return `${formatPart(day)}/${formatPart(month + 1)}`;
 };
 
+/**
+ * Renders a bar chart displaying kWh usage in the specified container.
+ *
+ * @param {string|HTMLElement} containerId - The ID of the DOM element or the element itself where the chart will be rendered.
+ * @param {Array<{ time: string|Date, value: number }>} readings - Array of reading objects containing time and value.
+ *
+ * @returns {void}
+ */
 export const renderChart = (containerId, readings) => {
-  chartJs.Chart.defaults.font.size = "10px";
+  Chart.Chart.defaults.font.size = "10px";
 
-  chartJs.Chart.register.apply(
+  Chart.Chart.register.apply(
     null,
-    Object.values(chartJs).filter((chartClass) => chartClass.id)
+    Object.values(Chart).filter((chartClass) => chartClass.id)
   );
 
   const labels = readings.map(({ time }) => formatDateLabel(time));
@@ -45,7 +59,7 @@ export const renderChart = (containerId, readings) => {
     chart.destroy();
   }
 
-  chart = new chartJs.Chart(containerId, {
+  chart = new Chart.Chart(containerId, {
     type: "bar",
     data: data,
     options: {
