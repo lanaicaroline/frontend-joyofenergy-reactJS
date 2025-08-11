@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { renderChart } from "../utils/chart.js";
-import { groupByDay, sortByTime } from "../utils/reading";
+// import { groupByDay, sortByTime } from "../utils/reading";
+import useGetData from "../hooks/useGetData/useGetData.js";
 
 /**
  * Displays an energy consumption chart for the last 30 days based on provided readings.
@@ -10,11 +11,19 @@ import { groupByDay, sortByTime } from "../utils/reading";
  * @param {Array<Object>} props.readings - Array of energy reading objects to be visualized.
  * @returns {JSX.Element} The rendered energy consumption chart component.
  */
+
 export const EnergyConsumption = ({ readings }) => {
+  const [chartData, setChartData] = React.useState([]);
+  const { data } = useGetData();
+
   const containerId = "usageChart";
+
+  // 1. Crie o mock de uma api para trazer esse data
   useEffect(() => {
-    renderChart(containerId, sortByTime(groupByDay(readings)).slice(-30));
-  }, []);
+    setChartData(data?.datasets);
+    renderChart(containerId, data?.datasets)
+  }, [data, chartData]);
+  // ===============================================
 
   return (
     <>

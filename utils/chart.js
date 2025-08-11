@@ -1,5 +1,4 @@
 import Chart from 'chart.js/auto';
-import x from '../__mocks__/chart';
 
 let chart;
 
@@ -37,10 +36,8 @@ export const renderChart = (containerId, readings) => {
     Object.values(Chart).filter((chartClass) => chartClass.id)
   );
 
-  // =============================================================
-
-  const labels = readings.map(({ time }) => formatDateLabel(time));
-  const values = readings.map(({ value }) => value);
+  const labels = readings?.map(({ time }) => formatDateLabel(time));
+  const values = readings?.map(({ value }) => value);
 
   const data = {
     labels: labels,
@@ -57,11 +54,6 @@ export const renderChart = (containerId, readings) => {
       },
     ],
   };
-
-  // 1. Crie o mock de uma api para trazer esse data
-  console.log(x())
-
-  // =============================================================
 
   if (chart) {
     chart.destroy();
